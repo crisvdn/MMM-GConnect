@@ -18,7 +18,7 @@ Module.register("MMM-GConnect", {
     const { h, render } = preact;
     const html = htm.bind(h);
 
-    const GarminWidget = ({ diffDays, distance, time, hr, activityType }) => {
+    const GarminWidget = ({ diffDays, distance, time, hr, activityType, aerobicTrainingEffect, anaerobicTrainingEffect }) => {
       const diffColor = diffDays > 3 ? "red" : "white";
 
       // taken from https://iconduck.com/icons/12253/running International Attribution License
@@ -121,6 +121,22 @@ Module.register("MMM-GConnect", {
                 ${hr} bpm
               </p>
             </div>
+            <div style="display: flex">
+            <${HeartIcon} />
+            <p
+             style="font-size: 1.2rem; color: white; padding: 0; margin: 0; margin-left: 0.5rem;"
+            >
+            ${aerobicTrainingEffect} aerobic TE
+            </p>
+            </div>
+            <div style="display: flex">
+            <${HeartIcon} />
+            <p
+              style="font-size: 1.2rem; color: white; padding: 0; margin: 0; margin-left: 0.5rem;"
+            >
+              ${anaerobicTrainingEffect} anaerobic TE
+            </p>
+            </div>
           </div>
         </div>
       </div>`;
@@ -136,6 +152,8 @@ Module.register("MMM-GConnect", {
         time=${currentData.lastActivityTime}
         speed=${currentData.lastActivityAvgSpeed}
         activityType=${currentData.activityType}
+        aerobicTrainingEffect=${currentData.aerobicTrainingEffect}
+        anaerobicTrainingEffect=${currentData.anaerobicTrainingEffect}
       />`,
       divElement
     );

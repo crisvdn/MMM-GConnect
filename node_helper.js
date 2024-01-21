@@ -36,6 +36,8 @@ module.exports = NodeHelper.create({
           Math.round(activities[0].averageHR * 100) / 100;
         const diff = getDiffActivityDate(lastActivityDate);
         const activityType = activities[0].activityName;
+        const aerobicTrainingEffect = Math.round(activities[0].aerobicTrainingEffect * 10) / 10;
+        const anaerobicTrainingEffect = Math.round(activities[0].anaerobicTrainingEffect * 10) / 10;
         self.sendSocketNotification("UPDATE_GARMIN_DATA", {
           diff,
           lastActivityDistance,
@@ -43,6 +45,8 @@ module.exports = NodeHelper.create({
           lastActivityAvgSpeed,
           lastActivityAvgHR,
           activityType,
+          aerobicTrainingEffect,
+          anaerobicTrainingEffect,
         });
         break;
       default:
